@@ -1,8 +1,8 @@
 public class ChallengeOne {
 
     public static void main(String[] args) {
-        boolean res = isPerfectNumber(6);
-        System.out.println("res:" + res);
+         numberToWords(0);
+        System.out.println("res:" );
     }
 
 
@@ -177,5 +177,79 @@ public class ChallengeOne {
         return res;
     }
 
+    public static int getDigitCount(int number){
+        int count = 0;
+
+        if(number < 0){
+            return -1;
+        }
+
+        if(number == 0){
+            return 1;
+        }
+
+        while(number > 0){
+            count++;
+            number /= 10;
+        }
+
+        return count;
+    }
+
+    public static int reverse(int number){
+        String reverse = "";
+        boolean isNegative = false;
+
+        if(number < 0){
+            isNegative = true;
+        }
+
+        if(isNegative){
+            number *= -1;
+        }
+
+        while(number > 9){
+            reverse += number % 10;
+            number /= 10;
+        }
+
+        reverse += number;
+        int reverseInt = Integer.valueOf(reverse);
+
+        if(isNegative){
+            reverseInt *= -1;
+        }
+
+        return reverseInt;
+    }
+
+    public static void numberToWords(int number){
+
+        if(number < 0){
+            System.out.println("Invalid Value");
+        }
+
+        int numberToProcess = reverse(number);
+        if(numberToProcess == 0){
+            System.out.println("ZERO");
+        }
+        while(numberToProcess > 0){
+            int currentDigit = numberToProcess % 10;
+            switch(currentDigit){
+                case 1 -> System.out.println("ONE");
+                case 2 -> System.out.println("TWO");
+                case 3 -> System.out.println("THREE");
+                case 4 -> System.out.println("FOUR");
+                case 5 -> System.out.println("FIVE");
+                case 6 -> System.out.println("SIX");
+                case 7 -> System.out.println("SEVEN");
+                case 8 -> System.out.println("EIGHT");
+                case 9 -> System.out.println("NINE");
+                default -> System.out.println("Invalid Value");
+            }
+
+            numberToProcess /= 10;
+        }
+    }
 
 }
